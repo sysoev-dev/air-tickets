@@ -14,8 +14,8 @@
 .ticket__item-right {
   width: 400px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .ticket__item-left {
@@ -56,6 +56,14 @@
 .ticket__item-btn:hover {
   background-color: #ff7f24;
   color: #fff;
+}
+
+.ticket__departure {
+  text-align: left;
+}
+
+.ticket__arrival {
+  text-align: right;
 }
 
 .ticket__time {
