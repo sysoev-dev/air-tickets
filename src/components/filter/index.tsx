@@ -1,14 +1,19 @@
+import './style.css';
 import { FilterCurrency } from '../filter-currency';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
-import './style.css';
+import { FilterProps } from './types';
 
-export function Filter({ filter, setFilter }) {
+export function Filter({ transfers, setTransfers }: FilterProps) {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value, checked } = event.target;
-    setFilter({ ...filter, [value]: checked });
+    const value = Number(event.target.value);
+    if (event.target.checked) {
+      setTransfers([...transfers, value]);
+    } else {
+      setTransfers(transfers.filter((item) => item !== value));
+    }
   }
   return (
     <aside className='tickets__filter'>
@@ -26,38 +31,53 @@ export function Filter({ filter, setFilter }) {
       <FormGroup>
         <FormControlLabel
           control={
-            <Checkbox checked={filter.transferAll} onChange={handleChange} />
+            <Checkbox
+              checked={transfers.some((count) => count === -1)}
+              onChange={handleChange}
+            />
           }
           label='Все'
-          value='transferAll'
+          value='-1'
         />
         <FormControlLabel
           control={
-            <Checkbox checked={filter.transfer0} onChange={handleChange} />
+            <Checkbox
+              checked={transfers.some((count) => count === 0)}
+              onChange={handleChange}
+            />
           }
           label='Без пересадок'
-          value='transfer0'
+          value='0'
         />
         <FormControlLabel
           control={
-            <Checkbox checked={filter.transfer1} onChange={handleChange} />
+            <Checkbox
+              checked={transfers.some((count) => count === 1)}
+              onChange={handleChange}
+            />
           }
           label='1 пересадка'
-          value='transfer1'
+          value='1'
         />
         <FormControlLabel
           control={
-            <Checkbox checked={filter.transfer2} onChange={handleChange} />
+            <Checkbox
+              checked={transfers.some((count) => count === 2)}
+              onChange={handleChange}
+            />
           }
           label='2 пересадки'
-          value='transfer2'
+          value='2'
         />
         <FormControlLabel
           control={
-            <Checkbox checked={filter.transfer3} onChange={handleChange} />
+            <Checkbox
+              checked={transfers.some((count) => count == 3)}
+              onChange={handleChange}
+            />
           }
           label='3 пересадки'
-          value='transfer3'
+          value='3'
         />
       </FormGroup>
     </aside>

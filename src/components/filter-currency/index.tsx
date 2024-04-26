@@ -7,7 +7,7 @@ export function FilterCurrency() {
   const [alignment, setAlignment] = useState<string | null>('rub');
 
   const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newAlignment: string | null
   ) => {
     setAlignment(newAlignment);
