@@ -1,8 +1,18 @@
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react';
 
 export function FilterCurrency() {
+  const [alignment, setAlignment] = useState<string | null>('rub');
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string | null
+  ) => {
+    setAlignment(newAlignment);
+  };
+
   return (
     <>
       <Typography
@@ -14,13 +24,18 @@ export function FilterCurrency() {
       >
         Валюта
       </Typography>
-      <ButtonGroup size='large' aria-label='Large button group'>
-        <Button key='one' variant='contained'>
-          Rub
-        </Button>
-        <Button key='two'>Usd</Button>
-        <Button key='three'>Eur</Button>
-      </ButtonGroup>
+      <ToggleButtonGroup
+        color='primary'
+        fullWidth
+        value={alignment}
+        exclusive
+        onChange={handleChange}
+        aria-label='Platform'
+      >
+        <ToggleButton value='rub'>rub</ToggleButton>
+        <ToggleButton value='usd'>usd</ToggleButton>
+        <ToggleButton value='eur'>eur</ToggleButton>
+      </ToggleButtonGroup>
     </>
   );
 }
